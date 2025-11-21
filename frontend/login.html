@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TELEPATHY // LOGIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="crt-container retro-border h-screen w-screen flex flex-col items-center justify-center p-8">
+        <div class="scanlines"></div>
+        <div class="flicker"></div>
+
+        <h1 class="text-6xl mb-2 tracking-widest">TELEPATHY</h1>
+        <p class="text-xl mb-8 opacity-80">> SECURE FREQUENCY LINK v1.0</p>
+
+        <div class="w-full max-w-md space-y-6">
+            <div>
+                <label class="block text-lg mb-2">> ENTER_CODENAME:</label>
+                <input type="text" id="username-input" class="retro-input w-full" placeholder="User..." maxlength="12" autocomplete="off">
+            </div>
+
+            <button id="connect-btn"  class="retro-btn w-full py-3">
+                INITIATE UPLINK
+            </button>
+
+            <div id="login-error" class="text-red-500 hidden mt-2 text-center"></div>
+        </div>
+    </div>
+
+    <script src="script.js">
+        // function login() {
+        //     const name = document.getElementById("username-input").value.trim();
+        //     if (!name) {
+        //         document.getElementById("login-error").innerText = "Codename cannot be empty.";
+        //         document.getElementById("login-error").classList.remove("hidden");
+        //         return;
+        //     }
+        //     localStorage.setItem("telepathy_user", name);
+        //     window.location.href = "chat.html";
+        // }
+    </script>
+</body>
+</html>

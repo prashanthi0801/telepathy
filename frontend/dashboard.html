@@ -4,91 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TELEPATHY // TERMINAL</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <div class="crt-container retro-border" id="app-container">
+<body>
+    <div class="crt-container retro-border h-screen w-screen" id="app-container">
         <div class="scanlines"></div>
         <div class="flicker"></div>
 
-        <!-- PAGE 1: LOGIN -->
-        <div id="login-page" class="flex flex-col items-center justify-center h-full w-full p-8">
-            <h1 class="text-6xl mb-2 tracking-widest">TELEPATHY</h1>
-            <p class="text-xl mb-8 opacity-80">> SECURE FREQUENCY LINK v1.0</p>
-            
-            <div class="w-full max-w-md space-y-6">
-                <div>
-                    <label class="block text-lg mb-2">> ENTER_CODENAME:</label>
-                    <input type="text" id="username-input" class="retro-input" placeholder="User..." maxlength="12" autocomplete="off">
-                </div>
-                <button id="connect-btn" class="retro-btn w-full py-3">INITIATE UPLINK</button>
-                <div id="login-error" class="text-red-500 hidden mt-2 text-center"></div>
-            </div>
-        </div>
-
-        <!-- PAGE 2: BROADCAST DASHBOARD -->
-        <div id="chat-page" class="hidden flex h-full w-full">
-            
-            <!-- Left Panel: Sidebar -->
+        <div class="flex h-full w-full">
+            <!-- LEFT SIDEBAR -->
             <div class="w-1/4 min-w-[200px] border-r-2 border-[var(--phosphor-dim)] flex flex-col bg-[#0a0a0a]">
                 <div class="p-4 border-b-2 border-[var(--phosphor-dim)]">
                     <h2 class="text-2xl">> FREQUENCIES</h2>
                     <div id="current-user-display" class="text-sm opacity-70 mt-1"></div>
                 </div>
 
-                <!-- Channel List -->
                 <div class="flex-1 overflow-y-auto p-2 space-y-2">
                     <div class="text-sm mb-2 opacity-50 uppercase tracking-wider">-- Broadcast --</div>
-                    
-                    <div id="channel-global" class="user-item active flex items-center gap-2 p-2" onclick="app.switchChannel('global')">
+
+                    <div id="channel-global" class="user-item active flex items-center gap-2 p-2">
                         <span class="text-xl">#</span> GLOBAL_NET
                     </div>
 
                     <div class="mt-6 text-sm mb-2 opacity-50 uppercase tracking-wider">-- Active Nodes --</div>
                     <div id="users-list" class="space-y-1">
-                        <!-- Users injected here -->
+                        <!-- Inject user nodes -->
                     </div>
                 </div>
-                
+
                 <div class="p-4 border-t-2 border-[var(--phosphor-dim)]">
-                    <button onclick="app.logout()" class="text-xs hover:underline text-red-400">[ TERMINATE_LINK ]</button>
+                    <button  id="disconnect-btn" class="text-xs hover:underline text-red-400">[ TERMINATE_LINK ]</button>
                 </div>
             </div>
 
-            <!-- Right Panel: Chat Area -->
-            <div class="flex-1 flex flex-col relative z-10">
-                <!-- Header -->
+            <!-- CHAT PANEL -->
+            <div class="flex-1 flex flex-col relative">
                 <div class="h-16 border-b-2 border-[var(--phosphor-dim)] flex items-center px-6 justify-between bg-[#0a0a0a]">
                     <div>
                         <h2 id="chat-header" class="text-3xl blink-cursor">GLOBAL_NET</h2>
                         <span class="text-xs opacity-60" id="chat-status">LIVE FEED</span>
                     </div>
+
                     <div class="flex items-center gap-2">
                         <div class="w-3 h-3 rounded-full bg-[var(--phosphor-main)] animate-pulse shadow-[0_0_10px_var(--phosphor-main)]"></div>
                         <span class="text-sm">ONLINE</span>
                     </div>
                 </div>
 
-                <!-- Message Log -->
-                <div id="messages-area" class="flex-1 overflow-y-auto p-6 flex flex-col space-y-2">
-                    <!-- Messages injected here -->
+                <!-- MESSAGES -->
+                <div id="messages-area" class="chat-messages">
                     <div class="text-center opacity-40 my-4">--- DECRYPTION COMPLETE ---</div>
                 </div>
 
-                <!-- Input Area -->
+                <!-- INPUT -->
                 <div class="h-20 border-t-2 border-[var(--phosphor-dim)] p-4 bg-[#0a0a0a] flex gap-4">
                     <input type="text" id="msg-input" class="retro-input flex-1" placeholder="Transmit data..." autocomplete="off">
-                    <button id="send-btn" class="retro-btn px-6">SEND</button>
+                    <button id="send-btn"  class="retro-btn px-6">SEND</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+<script src="index.js">
+    // Load user
+    // const user = localStorage.getItem("telepathy_user");
+    // if (!user) window.location.href = "login.html";
+
+    // document.getElementById("current-user-display").innerText =
+    //     "> LINKED NODE: " + user;
+
+    // function logout() {
+    //     localStorage.removeItem("telepathy_user");
+    //     window.location.href = "login.html";
+    // }
+
+    // function sendMessage() {
+    //     const msg = document.getElementById("msg-input").value.trim();
+    //     if (!msg) return;
+
+    //     const log = document.getElementById("messages-area");
+
+    //     const entry = document.createElement("div");
+    //     entry.className = "p-2 border border-[var(--phosphor-dim)]";
+    //     entry.innerText = user + ": " + msg;
+
+    //     log.appendChild(entry);
+
+    //     document.getElementById("msg-input").value = "";
+    //     log.scrollTop = log.scrollHeight;
+    // }
+</script>
+
 </body>
 </html>
