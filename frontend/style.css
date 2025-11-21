@@ -1,0 +1,168 @@
+:root {
+            --phosphor-main: #ffb000; /* Amber for text */
+            --phosphor-dim: #996a00;
+            --bg-color: #101010;
+            --screen-curve: rgba(18, 16, 16, 0);
+            --scanline: rgba(0, 0, 0, 0.5);
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: #050505;
+            color: var(--phosphor-main);
+            font-family: 'VT323', monospace;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 0 2px var(--phosphor-dim), 0 0 5px var(--phosphor-dim);
+        }
+
+        /* Retro Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: #000;
+            border-left: 1px solid var(--phosphor-dim);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--phosphor-main);
+            border: 1px solid #000;
+        }
+
+        /* CRT Effects */
+        .crt-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            background: var(--bg-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Scanlines overlay */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 50;
+            animation: scrollScan 10s linear infinite;
+        }
+        
+        /* Screen flicker */
+        .flicker {
+            animation: flicker 0.15s infinite;
+            pointer-events: none;
+            position: absolute;
+            top:0; left:0; right:0; bottom:0;
+            background: rgba(255, 176, 0, 0.02);
+            z-index: 49;
+        }
+
+        @keyframes scrollScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            50% { opacity: 1; }
+            100% { opacity: 0.98; }
+        }
+
+        /* UI Components */
+        .retro-border {
+            border: 2px solid var(--phosphor-main);
+            box-shadow: 0 0 10px var(--phosphor-dim), inset 0 0 10px var(--phosphor-dim);
+        }
+
+        .retro-input {
+            background: #000;
+            border: none;
+            border-bottom: 2px dashed var(--phosphor-main);
+            color: var(--phosphor-main);
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            outline: none;
+            padding: 10px;
+            width: 100%;
+        }
+        .retro-input:focus {
+            background: #1a1500;
+        }
+
+        .retro-btn {
+            background: transparent;
+            border: 2px solid var(--phosphor-main);
+            color: var(--phosphor-main);
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        .retro-btn:hover {
+            background: var(--phosphor-main);
+            color: #000;
+            box-shadow: 0 0 15px var(--phosphor-main);
+        }
+
+        .user-item {
+            cursor: pointer;
+            padding: 8px;
+            border-left: 2px solid transparent;
+            transition: 0.2s;
+        }
+        .user-item:hover {
+            background: rgba(255, 176, 0, 0.1);
+            border-left: 2px solid var(--phosphor-main);
+        }
+        .user-item.active {
+            background: var(--phosphor-main);
+            color: #000;
+            text-shadow: none;
+            font-weight: bold;
+        }
+        .user-item.active .status-dot {
+            background-color: #000;
+            box-shadow: none;
+        }
+
+        .msg-bubble {
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border: 1px solid var(--phosphor-dim);
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .msg-self {
+            align-self: flex-end;
+            border-color: var(--phosphor-main);
+            background: rgba(255, 176, 0, 0.1);
+        }
+        .msg-other {
+            align-self: flex-start;
+        }
+        
+        .hidden { display: none !important; }
+        
+        /* Blink cursor */
+        .blink-cursor::after {
+            content: '█';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
