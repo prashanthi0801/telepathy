@@ -1,4 +1,4 @@
-const socket = io()
+const socket = io();
 const user = localStorage.getItem("telepathy_user")
 let disConnectBtnEl=document.querySelector("#disconnect-btn")
 disConnectBtnEl.addEventListener("click",()=>{
@@ -16,4 +16,3 @@ sendEl.addEventListener("click",()=>{
     chatArea.append(divEl)
     document.getElementById("msg-input").value=""
 })
-let 
