@@ -1,4 +1,4 @@
-const socket = io()
+const socket = io("http://localhost:3000")
 // const user = localStorage.getItem("telepathy_user")
 // const username = localStorage.getItem("telepathy_user")
 const user = localStorage.getItem("telepathy_user");

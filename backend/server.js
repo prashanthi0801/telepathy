@@ -9,7 +9,18 @@ const path = require("path");
 const app = express();
 const { createServer } = require("node:http");
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: ["http://127.0.0.1:5501"],
+        methods: ["GET", "POST"]
+    }
+});
+
+// ENABLE CORS FOR EXPRESS
+app.use(cors({
+    origin: "http://127.0.0.1:5501"
+}));
+// const io = new Server(server);
 
 // Serve static files from frontend folder
 app.use(express.static(path.join(__dirname, "..", "frontend")));
